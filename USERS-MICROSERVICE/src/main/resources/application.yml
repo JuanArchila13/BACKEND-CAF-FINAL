@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: USERS-MICROSERVICE
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://junction.proxy.rlwy.net:40476/UsersDB?createDatabaseIfNotExist=true
+    username: root
+    password: uBraPdmSSSBPQnkHdGiWRUMbfaEFyFNR
+
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+      #defaultZone: https://eureka-051n.onrender.com/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

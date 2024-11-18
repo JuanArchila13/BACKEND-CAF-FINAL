@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: CAF-MICROSERVICE
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://autorack.proxy.rlwy.net:11940/CafDB?createDatabaseIfNotExist=true
+    username: root
+    password: ${DB_PASSWORD}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      #defaultZone: https://eureka-051n.onrender.com/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+media:
+  location: mediafiles
